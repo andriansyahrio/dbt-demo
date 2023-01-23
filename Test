@@ -1,0 +1,102 @@
+CREATE TABLE raw_customers(
+  customer_id serial PRIMARY KEY, 
+  first_name VARCHAR (50) NOT NULL, 
+  last_name VARCHAR (50), 
+  gender VARCHAR (10),
+  marital_status VARCHAR(20),
+  address VARCHAR (100),
+  dob DATE NOT NULL, 
+  email VARCHAR (50)
+);
+
+INSERT INTO 
+raw_customers(first_name, last_name, gender, address, dob, email)
+VALUES 
+('Arafah', 'Rianti',  'Female',  '','1993-04-05','arafah@mail.com'),
+('Budi', 'Doremi', 'Male', 'Jl. Kebon Kacang IX No.2A','1983-07-14','doremi@mail.com'),
+('Citra', 'Kirana', 'Female', 'Jl. Terusan Angkasa B-07','1990-12-28','ciki@mail.com');
+
+CREATE TABLE raw_stores(
+  store_id VARCHAR(7) PRIMARY KEY, 
+  address VARCHAR (100),
+  city VARCHAR (50) NOT NULL, 
+  country VARCHAR (50));
+INSERT INTO 
+raw_stores(store_id, address, city, country)
+VALUES 
+('M001', 'Jl Pegangsaan Barat No.48',  'Jakarta Pusat',  'Indonesia'),
+('M002', 'Jl Durian Raya No.12',  'Bekasi',  'Indonesia'),
+('M003', 'Jl Tambunan Raya A-B 01',  'Jakarta Barat',  'Indonesia'),
+('M004', 'Jl Pegunungan Lor 12 Blok B3',  'D.I. Yogyakarta',  'Indonesia'),
+('X001', '3 New Bugis Street',  'Bugis',  'Singapura');
+
+
+CREATE TABLE raw_products(
+  product_id VARCHAR(7) PRIMARY KEY, 
+  name VARCHAR(50) NOT NULL,
+  description VARCHAR(100)NOT NULL,
+  price DECIMAL NOT NULL
+);
+
+INSERT INTO 
+raw_products(product_id, name, description, price)
+VALUES 
+('2550001', 'Wafer Tango Vanilla 125gr',  'Tango Wafer Vanilla Milk 125 gram rasa Susu Vanila',  '15000'),
+('2550002', 'Sarden Kings Sambal 1555gr',  'KINGS FISHER Saus Sambal Sarden Mini Makanan Kaleng 155 g',  '9250'),
+('2550003', 'Sabun Lux Jasmine 900ml',  'LUX Velvet Jasmine Sabun Mandi Cair Refill 900ml (LUX Botanicals Velvet Jasmine Body Wash 900 ml)',  '32500');
+
+CREATE TABLE raw_dates(
+  date_id INTEGER PRIMARY KEY, 
+  date DATE NOT NULL,
+  month VARCHAR(20) NOT NULL,
+  year VARCHAR(4) NOT NULL
+);
+
+INSERT INTO 
+raw_dates (date_id, date,month,year)
+VALUES 
+(1356, '2023-01-01','January','2023'),
+(1357, '2023-01-02','January','2023'),
+(1358, '2023-01-03','January','2023'),
+(1359, '2023-01-04','January','2023'),
+(1360, '2023-01-05','January','2023');
+
+
+
+
+
+
+CREATE TABLE raw_order(
+  order_id INTEGER PRIMARY KEY, 
+  transaction_date TIMESTAMP NOT NULL,
+  customer_id INTEGER NOT NULL,
+  store_id VARCHAR(7) NOT NULL,
+  payment_type VARCHAR(20)
+);
+
+INSERT INTO 
+raw_order(order_id, transaction_date, customer_id, store_id, payment_type)
+VALUES 
+(100,'2023-01-05 07:02:00',1,'M001','CASH'),
+(102,'2023-01-05 09:15:01',2,'M001','DEBIT'),
+(103,'2023-01-05 10:02:15',3,'M001','QRIS'),
+(200,'2023-01-05 20:12:10',1,'M003','QRIS');
+
+
+
+CREATE TABLE raw_order_items(
+  order_id INTEGER, 
+  product_id VARCHAR(7) NOT NULL,
+  quantity INTEGER NOT NULL,
+  price INTEGER NOT NULL
+);
+
+INSERT INTO 
+raw_order_items(order_id, product_id, quantity, price)
+VALUES 
+(100,'2550001',6, 15200),
+(100,'2550002',4, 9500),
+(102,'2550001',10, 15200),
+(102,'2550003',7, 32750),
+(103,'2550001',8, 15200),
+(200,'2550001',4, 15250);

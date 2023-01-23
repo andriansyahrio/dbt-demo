@@ -1,0 +1,17 @@
+CREATE TABLE raw_customers(
+  customer_id serial PRIMARY KEY, 
+  first_name VARCHAR (50) NOT NULL, 
+  last_name VARCHAR (50), 
+  gender VARCHAR (10),
+  marital_status VARCHAR(20),
+  address VARCHAR (100),
+  dob DATE NOT NULL, 
+  email VARCHAR (50)
+);
+
+INSERT INTO 
+raw_customers(first_name, last_name, gender, address, dob, email)
+VALUES 
+('Arafah', 'Rianti',  'Female',  '','1993-04-05','arafah@mail.com'),
+('Budi', 'Doremi', 'Male', 'Jl. Kebon Kacang IX No.2A','1983-07-14','doremi@mail.com'),
+('Citra', 'Kirana', 'Female', 'Jl. Terusan Angkasa B-07','1990-12-28','ciki@mail.com');
